@@ -1,10 +1,11 @@
 "use strict";
 
 String.prototype.isPalindrome = function() {
+	// код для задачи №1 писать здесь
+    // return averageMark
 
 	let checkText = this.replace(/\s+/g,'').toLowerCase();
 	let checkTextRevers = checkText.split('').reverse().join('');
-
 
 	if(checkText === checkTextRevers) {
 		return true;
@@ -14,17 +15,9 @@ String.prototype.isPalindrome = function() {
 	}
 }
 
-// Марии Степановне очень пригодился журнал, который вы помогли разработать. Остаются, буквально, последние штрихи: для того, чтобы поставить оценку за четверть по предмету, учителю требуется округлить ее. Расширьте программу так, чтобы она выводила не только средний балл, но и округленный.
-
-// Процесс реализации
-// Создайте функцию принимающую один аргумент marks, массив оценок ученика;
-// Подсчитайте средний бал ученика average, перебирая массив marks;
-// Округлите средний бал average до ближайшего целого, записав в переменную roundedAverage;
-// Верните результат работы функции - переменную roundedAverage.
 
 function getAverageMark(marks) {
 	// код для задачи №2 писать здесь
-
     // return averageMark
     let sumMark = 0;
     for (let mark of marks) {
@@ -37,22 +30,10 @@ function getAverageMark(marks) {
 function checkBirthday(birthday) {
     // код для задачи №3 писать здесь
     // return verdict
-
-	//     Бармен-андроид Арчи очень благодарен за ту программу, которую вы в него встроили. Однако, появилась проблема: знать год рождения посетителя оказалось недостаточным. Нужно знать еще и дату рождения, и уже на основе этого делать выводы. Расширьте программу так, чтобы она могла принимать полную дату рождения и выдавала результат в зависимости от текущей даты и времени.
-
-	// Процесс реализации
-	// Получить текущую дату в Unix Timestamp и записать в переменную now;
-	// Создать экземпляр Date с датой рождения пользователя (помните, что месяцы начинаются с 0, а даты с 1);
-	// Получить Unix Timestamp даты рождения пользователя и записать в переменную birthday;
-	// Посчитать разницу между birthday и now в миллисекундах, сохранив в переменную diff;
-	// Определить возраст пользователя age, разделив diff на количество миллисекунд в году (помните про високосные года);
-	// Верните в качестве результата работы функции, анализ age, является ли клиент совершеннолетним ( > 18 лет).
-
-		let now = +new Date();
-		// let now = Date.now();
-		birthday = +new Date(birthday);
-		let diff = now - birthday;
-		let age = diff / (24 * 3600 * 365.25 * 1000);
+	let now = +new Date();
+	birthday = +new Date(birthday);
+	let diff = now - birthday;
+	let age = diff / (24 * 3600 * 365.25 * 1000);
 		if (age >= 18) {
 			return true;
 		}
@@ -60,9 +41,7 @@ function checkBirthday(birthday) {
 			return false;
 		}
 
-		console.log(birthday);
-
-
+	console.log(birthday);
 
 	 }
 
