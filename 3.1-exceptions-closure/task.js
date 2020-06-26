@@ -23,7 +23,8 @@ class Triangle {
 		this.a = a;
 		this.b = b;
 		this.c = c; 
-		if((this.a + this.b) < this.c || (this.a + this.c) < this.b || (this.b + this.c) < this.a) throw new Error("Треугольник с такими сторонами не существует");
+		if((a + b) < c || (a + c) < b || (b + c) < a) 
+			throw new Error("Треугольник с такими сторонами не существует");
 		
 	}
 	getPerimeter() {
@@ -39,21 +40,7 @@ class Triangle {
 	
 }
 
-class TriangleError {
-	constructor(msg) {
-		this.msg = msg;
-	}
 
-	getPerimeter() {
-		return this.msg;
-	}
-
-	getArea() {
-		return this.msg;
-	}
-
-
-}
 
 function getTriangle(a, b, c) {
 	try {
@@ -62,9 +49,8 @@ function getTriangle(a, b, c) {
 
 	catch(e) 
 	{
-		let msg = "Ошибка! Неправильный треугольник";
-		return new TriangleError(msg);
 		
+		return {getArea: () => "Ошибка! Неправильный треугольник", getPerimeter: () => "Ошибка! Неправильный треугольник"}
 	}
 
 }
