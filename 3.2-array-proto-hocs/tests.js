@@ -6,7 +6,6 @@ describe('Домашнее задание к занятию 3.2 «Прототи
   it('функция compareArrays должна возвращать истину при одинаковых массивах', () => {
     expect(compareArrays([6, 3, 28], [6, 3, 28])).toBeTruthy();
   });
-
   it('функция compareArrays должна возвращать истину при пустых массивах', () => {
     expect(compareArrays([], [])).toBeTruthy();
   });
