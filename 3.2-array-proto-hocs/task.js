@@ -1,6 +1,5 @@
 "use strict";
-function sleep(milliseconds) 
-{
+function sleep(milliseconds) {
   let e = new Date().getTime() + milliseconds;
   while (new Date().getTime() <= e) {}
 }
@@ -9,81 +8,58 @@ function sum(...args) {
   // Замедление на половину секунды.
   sleep(100); // Можно использовать другое значение замедления.
   return args.reduce((sum, arg) => {
-    return sum += +arg;
+    return (sum += +arg);
   }, 0);
 }
 
-function compareArrays( arr1, arr2 ) {
-	let result = true;
-		if(arr1.length === arr2.length) {
-				function cheackElement(item, i) {
-				return item === arr2[i];
-			}
-			result = arr1.every(cheackElement);
-		}
-		else {
-			result = false;
-		}	
-	return result;
-}
+const compareArrays = (arr1, arr2) => {return (arr1.length === arr2.length && arr1.every((item, i) => item === arr2[i]))};
 
-
-function memorize(fn, limit) 
-{
-	let memory = [];
-    return function(...args) 
-    {
- 			if(memory.length == 0) {
-				let resultFn = fn(...args);
-				memory.push({args: args, result: resultFn});
-			    return resultFn;  
-			}
-
-			else {
-				let arrayElementFound = memory.find(function viewMemory(item) {
-					return compareArrays( item.args, args );
-				});
-				if(arrayElementFound != undefined) {
-					console.log("Результат из памяти");
-					return arrayElementFound.result;
-				}
-		 		  	let resultFn = fn(...args);
-		  	 	if(memory.length == limit) {
-		  	 		memory.splice(0,1);
-		  	 	}
-		  	 	memory.push({args: args, result: resultFn});
-				return resultFn; 
-  			}
+function memorize(fn, limit) {
+  let memory = [];
+  return function (...args) {
+      let arrayElementFound = memory.find(function viewMemory(item) {
+        return compareArrays(item.args, args);
+      });
+      if (arrayElementFound != undefined) {
+        console.log("Результат из памяти");
+        return arrayElementFound.result;
+      }
+      let resultFn = fn(...args);
+      if (memory.length == limit) {
+        memory.splice(0, 1);
+      }
+      memory.push({ args: args, result: resultFn });
+      return resultFn;
     }
-}
-
-
+  };
 
 function testCase(testFunction, timer) {
-	let testArgs = [[1,2,3], [1,2], [1,2,3], [1,2], [9,5,2,4]];
-	console.time(timer);
-	for (let i = 0; i <= 100; i++) {
-			testArgs.forEach(function(item) {
-			return testFunction(...item);
-		});
-	}
+  let testArgs = [
+    [1, 2, 3],
+    [1, 2],
+    [1, 2, 3],
+    [1, 2],
+    [9, 5, 2, 4]
+  ];
+  console.time(timer);
+  for (let i = 0; i <= 100; i++) {
+    testArgs.forEach(function (item) {
+      return testFunction(...item);
+    });
+  }
 
-	console.timeEnd(timer)
+  console.timeEnd(timer);
 }
-
-
-
 
 const mSum = memorize(sum, 5);
 console.log(mSum(3, 4));
-console.log(mSum(1,6,5));
+console.log(mSum(1, 6, 5));
 console.log(mSum(3, 4));
-console.log(mSum(1,6,5));
-console.log(mSum(1,6,5));
+console.log(mSum(1, 6, 5));
+console.log(mSum(1, 6, 5));
 // mSum(3, 4);
 testCase(mSum, "Таймер новой функции:");
 testCase(sum, "Таймер старой функции:");
-
 
 console.log(compareArrays([8, 9], [6])); // false, разные значения
 console.log(compareArrays([8, 9, 5, 4], [8, 9, 5, 4, 8, 3, 5])); // false, разные значения
