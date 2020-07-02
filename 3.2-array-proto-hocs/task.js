@@ -14,6 +14,20 @@ function sum(...args) {
 
 const compareArrays = (arr1, arr2) => {return (arr1.length === arr2.length && arr1.every((item, i) => item === arr2[i]))};
 
+// function compareArrays( arr1, arr2 ) {
+// 	let result = true;
+// 		if(arr1.length === arr2.length) {
+// 				function cheackElement(item, i) {
+// 				return item === arr2[i];
+// 			}
+// 			result = arr1.every(cheackElement);
+// 		}
+// 		else {
+// 			result = false;
+// 		}	
+// 	return result;
+// }
+
 function memorize(fn, limit) {
   let memory = [];
   return function (...args) {
